@@ -52,43 +52,43 @@
 */
 // TYPE time path:line message
 
-#define seeLevel 0
+#define seeLevel 1
 
-#define logInfo(message, level)                                                          \
-    if (seeLevel <= level)                                                               \
-    {                                                                                    \
-        (printf(BGREEN "INFO   " GREEN "%s  %s:%d " RES, __TIME__, __FILE__, __LINE__)); \
-        message;                                                                         \
-        printf("\n");                                                                    \
+#define logInfo(message, level)                                                           \
+    if (seeLevel <= level)                                                                \
+    {                                                                                     \
+        (printf(BGREEN "INFO   " GREEN "%s  %s:%d  " RES, __TIME__, __FILE__, __LINE__)); \
+        message;                                                                          \
+        printf("\n");                                                                     \
     }
 
-#define logClean(message, level)                                                         \
-    if (seeLevel <= level)                                                               \
-    {                                                                                    \
-        printf(BYELLOW "CLEAN  " YELLOW "%s  %s:%d " RES, __TIME__, __FILE__, __LINE__); \
-        message;                                                                         \
-        printf("\n");                                                                    \
+#define logClean(message, level)                                                          \
+    if (seeLevel <= level)                                                                \
+    {                                                                                     \
+        printf(BYELLOW "CLEAN  " YELLOW "%s  %s:%d  " RES, __TIME__, __FILE__, __LINE__); \
+        message;                                                                          \
+        printf("\n");                                                                     \
     }
 
-#define logTrace(message, level)                                                     \
-    if (seeLevel <= level)                                                           \
-    {                                                                                \
-        printf(BBLUE "TRACE  " BLUE "%s  %s:%d " RES, __TIME__, __FILE__, __LINE__); \
-        message;                                                                     \
-        printf("\n");                                                                \
+#define logTrace(message, level)                                                      \
+    if (seeLevel <= level)                                                            \
+    {                                                                                 \
+        printf(BBLUE "TRACE  " BLUE "%s  %s:%d  " RES, __TIME__, __FILE__, __LINE__); \
+        message;                                                                      \
+        printf("\n");                                                                 \
     }
 
 #define logWarning(message, level)                                                         \
     if (seeLevel <= level)                                                                 \
     {                                                                                      \
-        printf(BMAGENTA "WARN   " MAGENTA "%s  %s:%d " RES, __TIME__, __FILE__, __LINE__); \
+        printf(BMAGENTA "WARN  " MAGENTA "%s  %s:%d  " RES, __TIME__, __FILE__, __LINE__); \
         message;                                                                           \
         printf("\n");                                                                      \
     }
 
-#define logError(message)                                                   \
-    printf(BRED "ERROR " RED "%s %s:%d" RES, __TIME__, __FILE__, __LINE__); \
-    message;                                                                \
+#define logError(message)                                                      \
+    printf(BRED "ERROR  " RED "%s %s:%d  " RES, __TIME__, __FILE__, __LINE__); \
+    message;                                                                   \
     printf("\n");
 
 // any log with a level equal or above the current logging level will be shown anything else will be omited

@@ -26,6 +26,7 @@ Entity CreateEntity(ECSContainer container)
     container->entities[container->entitiesPointer]->id = container->entitiesPointer;
 
     container->entitiesPointer++;
+    logTrace(printf("Entity component created with address %p", e), 0);
 
     return e;
 }
@@ -48,10 +49,6 @@ void UpdateECS(ECSContainer container, Entity window)
             RenderSprite(window, container->entities[comp]);
             // UpdateImageComponent(window, container->entities[comp]);
         }
-        // if (container->entities[comp]->components.CompWindowIndex == 1)
-        //{
-
-        //}
     }
 
     UpdateWindowComponent(window);

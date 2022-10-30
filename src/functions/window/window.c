@@ -108,7 +108,7 @@ void AddWindowComponent(Entity e)
     e->components.window = malloc(sizeof(Comp_Window));
     memset(e->components.window, 0, sizeof(Comp_Window));
     e->components.CompWindowIndex++;
-    logTrace(printf("Window component made"), 0);
+    logTrace(printf("Window component allocated with address %p", e->components.window), 1);
 }
 
 Entity CreateWindowComponent(ECSContainer container, int sizeX, int sizeY)

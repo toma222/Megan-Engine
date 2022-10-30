@@ -68,15 +68,13 @@ void MakeSprite(Entity window, Entity sprite)
     sprite->components.image->ySync = window->components.window->ySize / 108;
 
     RenderTextureFromImage(sprite->components.image, window->components.window);
-
-    logTrace(printf("Created Sprite"), 0);
 }
 void AddImageComponent(Entity e)
 {
     e->components.image = malloc(sizeof(Comp_Image));
     memset(e->components.image, 0, sizeof(Comp_Image));
     e->components.CompImageIndex = 1;
-    logTrace(printf("Image component made"), 0);
+    logTrace(printf("Image component allocated with address %p", e->components.image), 1);
 }
 
 Entity CreateImageComponent(ECSContainer container, Entity window, struct Vector2 position, struct Vector2 scale, char path[200])
@@ -94,7 +92,6 @@ Entity CreateImageComponent(ECSContainer container, Entity window, struct Vector
     strcpy(e->components.image->path, path);
     MakeSprite(window, e);
 
-    logTrace(printf("Image component configured"), 0);
     return e;
 }
 

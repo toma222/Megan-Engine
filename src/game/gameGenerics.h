@@ -7,4 +7,4 @@
 #include "../utils/macros.h"
 
 void Start(ECSContainer container, Entity window);
-void Update();
+void Update(ECSContainer container, Entity window);

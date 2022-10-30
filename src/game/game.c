@@ -12,6 +12,6 @@ void Start(ECSContainer container, Entity window)
     Entity sprite = CreateImageComponent(container, window, NewVector2(0, 0), NewVector2(100, 100), path);
 }
 
-void Update()
+void Update(ECSContainer container, Entity window)
 {
 }
