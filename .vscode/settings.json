@@ -1,0 +1,18 @@
+{
+  "files.associations": {
+    "ecs.h": "c",
+    "comps.h": "c",
+    "ecsdata.h": "c",
+    "stdlib.h": "c",
+    "string.h": "c",
+    "sdl.h": "c",
+    "sdl_mixer.h": "c",
+    "comps_screen.h": "c",
+    "logging.h": "c",
+    "genericsheader.h": "c",
+    "windows.h": "c",
+    "gamegenerics.h": "c",
+    "sdl_timer.h": "c",
+    "componentsgenarics.h": "c"
+  }
+}
