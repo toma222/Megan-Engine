@@ -12,8 +12,6 @@
 #include <sys/time.h>
 #include <math.h>
 
-// gives a variable with name path
-
 long long gTime()
 {
     struct timeval te;
@@ -42,8 +40,6 @@ int main(int argc, char *argv[])
 
     Start(container, window);
     logInfo(printf("Engine initilized in in %lld MS", gTime() - over), 2);
-
-    printf("%i\n", container->entitiesPointer);
 
     int frameLogCount = 0;
     int epoch = 0;

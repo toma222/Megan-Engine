@@ -72,10 +72,6 @@ void SyncWindow(long prevTime)
 
 int RenderWindow(Entity window)
 {
-    /* This calls the basic Init function where sprites and the ledger will be made */
-
-    /* Defines when the application should quit */
-
     long startTime = current_timestamp();
 
     SDL_Event e;
@@ -88,9 +84,6 @@ int RenderWindow(Entity window)
             break;
         }
     }
-
-    /* Clears the screen for a new frame to be drawn */
-    // SDL_RenderClear(window->components.window->window_renderer);
 
     /* Presents all the changes made to the window and renders them */
     SDL_RenderPresent(window->components.window->window_renderer);

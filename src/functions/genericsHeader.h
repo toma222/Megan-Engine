@@ -7,6 +7,10 @@
 #define USI unsigned short int
 
 // Transform Functions
+void movePosition(Entity e, int x, int y);
+void setPosition(Entity e, int x, int y);
+void moveScale(Entity e, int x, int y);
+void setScale(Entity e, int x, int y);
 void AddTransformComponent(Entity e);
 Entity CreateTransformComponent(ECSContainer container, Entity window);
 void UpdateTransformComponent(Entity entity);

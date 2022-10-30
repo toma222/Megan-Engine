@@ -4,6 +4,28 @@
 #include "../genericsHeader.h"
 #include "../../components/componentsGenarics.h"
 
+void movePosition(Entity e, int x, int y)
+{
+    e->components.transform->position.x += x;
+    e->components.transform->position.y += y;
+}
+void setPosition(Entity e, int x, int y)
+{
+    e->components.transform->position.x = x;
+    e->components.transform->position.y = y;
+}
+
+void moveScale(Entity e, int x, int y)
+{
+    e->components.transform->scale.x += x;
+    e->components.transform->scale.y += y;
+}
+void setScale(Entity e, int x, int y)
+{
+    e->components.transform->scale.x = x;
+    e->components.transform->scale.y = y;
+}
+
 void AddTransformComponent(Entity e)
 {
     e->components.transform = malloc(sizeof(Comp_Transform));

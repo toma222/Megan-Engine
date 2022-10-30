@@ -6,20 +6,21 @@
 #include "../genericsHeader.h"
 
 #include "../../utils/math/MMath.h"
+#include "../../utils/macros.h"
 
 void RenderSprite(Entity window, Entity sprite)
 {
     /* Calculates position based on the sync values */
-    // sprite->components.image->texture_rect.x = (sprite->components.transform->position.x * sprite->components.image->xSync);
-    // sprite->components.image->texture_rect.y = (sprite->components.transform->position.y * sprite->components.image->ySync);
+    sprite->components.image->texture_rect.x = (sprite->components.transform->position.x * sprite->components.image->xSync);
+    sprite->components.image->texture_rect.y = (sprite->components.transform->position.y * sprite->components.image->ySync);
 
     /*
         The scale uses relative units from the user
         pixels*pixels is multiplied by size*size
         so that a scale of 1,1 would be the native image size
     */
-    // sprite->components.image->texture_rect.w = sprite->components.transform->scale.x * sprite->components.image->imageSizeX * sprite->components.image->xSync;
-    // sprite->components.image->texture_rect.h = sprite->components.transform->scale.y * sprite->components.image->imageSizeY * sprite->components.image->ySync;
+    sprite->components.image->texture_rect.w = sprite->components.transform->scale.x * sprite->components.image->imageSizeX * sprite->components.image->xSync;
+    sprite->components.image->texture_rect.h = sprite->components.transform->scale.y * sprite->components.image->imageSizeY * sprite->components.image->ySync;
 
     if (SDL_RenderCopy(window->components.window->window_renderer, sprite->components.image->texture, NULL, &sprite->components.image->texture_rect) != 0)
     {
@@ -64,8 +65,8 @@ void MakeSprite(Entity window, Entity sprite)
     sprite->components.image->texture_rect.h = sprite->components.transform->scale.y;    // the height of the texture
 
     /* I want to scale the sprites to a 192 by 108 pixel aspect so we calculate these Sync values */
-    sprite->components.image->xSync = window->components.window->xSize / 192;
-    sprite->components.image->ySync = window->components.window->ySize / 108;
+    sprite->components.image->xSync = windowX / 192;
+    sprite->components.image->ySync = windowY / 108;
 
     RenderTextureFromImage(sprite->components.image, window->components.window);
 }
@@ -77,7 +78,7 @@ void AddImageComponent(Entity e)
     logTrace(printf("Image component allocated with address %p", e->components.image), 1);
 }
 
-Entity CreateImageComponent(ECSContainer container, Entity window, struct Vector2 position, struct Vector2 scale, char path[200])
+Entity CreateImageComponent(ECSContainer container, Entity window, struct Vector2 position, struct Vector2 imageScale, char path[200])
 {
     Entity e = CreateEntity(container);
     AddImageComponent(e);
@@ -86,8 +87,11 @@ Entity CreateImageComponent(ECSContainer container, Entity window, struct Vector
     e->components.transform->position.x = position.x;
     e->components.transform->position.y = position.y;
 
-    e->components.transform->scale.x = scale.x;
-    e->components.transform->scale.y = scale.y;
+    e->components.transform->scale.x = 1;
+    e->components.transform->scale.y = 1;
+
+    e->components.image->imageSizeX = imageScale.x;
+    e->components.image->imageSizeY = imageScale.y;
 
     strcpy(e->components.image->path, path);
     MakeSprite(window, e);
