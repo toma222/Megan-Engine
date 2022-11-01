@@ -20,6 +20,9 @@ struct Components
 
     Comp_Transform *transform;
     int CompTransformIndex;
+
+    Comp_Alignment *alignment;
+    int CompAlignmentIndex;
 };
 
 /*

@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 
     StartECS(container);
     // Entity e = CreateEntity(container);
-    Entity window = CreateWindowComponent(container, 500, 500);
+    Entity window = CreateWindowComponent(container, windowX, windowY);
     container->engineEntities->windowIndex = 0;
     logTrace(printf("Window for engine created with pointer at %p", window), 2);
     logInfo(printf("Window created and ECS initialized in %lld MS", gTime() - b), 3);

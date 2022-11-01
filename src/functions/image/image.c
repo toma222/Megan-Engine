@@ -8,6 +8,8 @@
 #include "../../utils/math/MMath.h"
 #include "../../utils/macros.h"
 
+#include "submod/alignment.h"
+
 void RenderSprite(Entity window, Entity sprite)
 {
     /* Calculates position based on the sync values */
@@ -24,7 +26,7 @@ void RenderSprite(Entity window, Entity sprite)
 
     if (SDL_RenderCopy(window->components.window->window_renderer, sprite->components.image->texture, NULL, &sprite->components.image->texture_rect) != 0)
     {
-        logError(printf("%s", SDL_GetError()));
+        //logError(printf("%s", SDL_GetError()));
     }
 }
 
