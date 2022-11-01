@@ -18,8 +18,6 @@ void UpdateTransformComponent(Entity entity);
 // Window Functions
 void MakeWindow(Entity entity, int xSize, int ySize);
 int RenderWindow(Entity window);
-
-// Generic Window Functions
 void AddWindowComponent(Entity e);
 Entity CreateWindowComponent(ECSContainer container, int sizeX, int sizeY);
 void UpdateWindowComponent(Entity entity);
@@ -27,9 +25,14 @@ void UpdateWindowComponent(Entity entity);
 // Image Functions
 void MakeSprite(Entity Window, Entity Sprite);
 void RenderSprite();
-// Generic Image Functions
 void AddImageComponent(Entity e);
 Entity CreateImageComponent(ECSContainer container, Entity window, struct Vector2 position, struct Vector2 Scale, char path[200]);
 void UpdateImageComponent(Entity window, Entity entity);
 
+// Alignment Functions
+void addAlignmentComponent(Entity e);
+Entity CreateAlignmentComponent(ECSContainer container, struct Vector2 cellSize, struct Vector2 cellPadding);
+void UpdateAlignmentComponent(Entity alignment);
+void CalculateAlignmentPosition(Entity alignment);
+void AddImageToAlignment(Entity alignment, Entity sprite);
 // MMath functions

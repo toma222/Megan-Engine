@@ -1,0 +1,3 @@
+d:\llvm-mingw-20220323-msvcrt-x86_64\bin\gcc.exe -Wall -o dist/x64/main src/main.c src/ecs/ecs.c src/functions/transform/transform.c src/functions/window/window.c src/game/game.c src/functions/image/image.c src/utils/math/MMath.c -Iinclude/windows -Llib/x64 -lSDL2main -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
+
+dist/x64/main.exe

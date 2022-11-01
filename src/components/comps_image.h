@@ -1,5 +1,10 @@
+#pragma once
 
 #include "SDL2/SDL.h"
+
+#include "../ecs/ecs.h"
+#include "../utils/math/MMath.h"
+
 
 typedef struct
 {
@@ -20,3 +25,5 @@ typedef struct
     int layer;
 
 } Comp_Image;
+
+

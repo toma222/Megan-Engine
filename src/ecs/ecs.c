@@ -42,7 +42,7 @@ void DestroyEntity(ECSContainer container, unsigned short int id)
 void UpdateECS(ECSContainer container, Entity window)
 {
     // loop through all the components
-    for (size_t comp = 0; comp < 2; comp++)
+    for (size_t comp = 0; comp < container->entitiesPointer; comp++)
     {
         if (container->entities[comp]->components.CompImageIndex == 1)
         {
