@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
 
     logInfo(printf("Starting Engine"), 3);
     ECSContainer container;
-    container = malloc(sizeof(ECSContainer));
+    container = malloc(sizeof(ECSContainer) * 502);
     logTrace(printf("Container for ECS created with pointer at %p", container), 2);
 
     StartECS(container);
@@ -44,6 +44,7 @@ int main(int argc, char *argv[])
     int epoch = 0;
     char status[10] = "Good";
     b = gTime();
+
     while (0 == 0)
     {
         // Clear SDL Render
@@ -54,7 +55,7 @@ int main(int argc, char *argv[])
         frameLogCount++;
         if (frameLogCount == 60)
         {
-            logInfo(printf("Status: %s | Time: %i | Entities : %i | Epoch: %i", status, (int)(1000 / ((gTime() - b) / 60)), container->entitiesPointer, epoch), 3);
+            logInfo(printf("Status: %s | Time: %i MS | Entities : %i | Epoch: %i", status, (int)((gTime() - b) / 60), container->entitiesPointer, epoch), 3);
             epoch++;
             b = gTime();
             frameLogCount = 0;

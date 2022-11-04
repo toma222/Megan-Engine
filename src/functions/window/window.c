@@ -55,7 +55,7 @@ void MakeWindow(Entity entity, int xSize, int ySize)
     }
 
     /* Sets up the renderer with the SDL_RENDERER_PRESENTVSYNC option because it runs faster with it (I dont know why)*/
-    entity->components.window->window_renderer = SDL_CreateRenderer(entity->components.window->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    entity->components.window->window_renderer = SDL_CreateRenderer(entity->components.window->window, -1, SDL_RENDERER_ACCELERATED);
 }
 
 void SyncWindow(long prevTime)

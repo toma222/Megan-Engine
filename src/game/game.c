@@ -5,26 +5,27 @@
 #include "../components/componentsGenarics.h"
 #include "../functions/genericsHeader.h"
 #include "../utils/macros.h"
+#include "../utils/logging.h"
 
-//Entity sprite;
+// Entity sprite;
 
 void Start(ECSContainer container, Entity window)
 {
-    imagePath = "D:/progectStructureTester/assets/images/test/checkerboard.bmp";
 
-    Entity sprite1 = CreateImageComponent(container, window, NewVector2(0, 0), NewVector2(16, 16), path);
-    Entity sprite2 = CreateImageComponent(container, window, NewVector2(0, 0), NewVector2(16, 16), path);
-    Entity sprite3 = CreateImageComponent(container, window, NewVector2(0, 0), NewVector2(16, 16), path);
+    // Background
+    char path[200] = "C:/Users/Aidan/Desktop/progectStructureTester/assets/images/game/battle/Untitled.bmp";
+    CreateImageComponent(container, window, NewVector2(0, 0), NewVector2(192, 108), path);
 
-    Entity a = CreateAlignmentComponent(container, NewVector2(16,0), NewVector2(10,0));
-    AddImageToAlignment(a,sprite1);
-    AddImageToAlignment(a,sprite2);
-    AddImageToAlignment(a,sprite3);
+    // Player Card
+    char playerCardPath[200] = "C:/Users/Aidan/Desktop/progectStructureTester/assets/images/game/PlayerCard.bmp";
+    CreateImageComponent(container, window, NewVector2(143, 1), NewVector2(40, 55), playerCardPath);
 
-    CalculateAlignmentPosition(a);
+    // Test card
+    char cardPath[200] = "C:/Users/Aidan/Desktop/progectStructureTester/assets/images/game/battle/cards/Kick.bmp";
+    // Entity alignment = CreateAlignmentComponent()
+    CreateImageComponent(container, window, NewVector2(10, 63), NewVector2(25, 35), cardPath);
 }
 
 void Update(ECSContainer container, Entity window)
 {
-    // movePosition(sprite, 1, 0);
 }

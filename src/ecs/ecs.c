@@ -47,7 +47,7 @@ void UpdateECS(ECSContainer container, Entity window)
         if (container->entities[comp]->components.CompImageIndex == 1)
         {
             RenderSprite(window, container->entities[comp]);
-            // UpdateImageComponent(window, container->entities[comp]);
+            UpdateImageComponent(window, container->entities[comp]);
         }
     }
 

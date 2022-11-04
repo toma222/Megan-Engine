@@ -14,7 +14,7 @@ make:
 	$(info [MAKE][makefile] compiling with       => ${COMPILER})
 	$(info [MAKE][makefile] compiling for target => ${TARGET})
 	$(info [MAKE][makefile] compiling to         => ${BIN_PATH})
-	$(COMPILER) -Wall -o $(BIN_PATH) $(MAINFILE) $(C_FILES) $(INCLUDE_PATH) $(LIBRARY_FLAGS)
+	$(COMPILER) -Wall -O2 -O3 -o $(BIN_PATH) $(MAINFILE) $(C_FILES) $(INCLUDE_PATH) $(LIBRARY_FLAGS)
 	make run
 
 run:

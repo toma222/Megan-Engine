@@ -35,7 +35,7 @@ struct Struct_ECSContainer
 {
     // Contains all possible components
     unsigned short int entitiesPointer;
-    Entity entities[5];
+    Entity entities[500];
     struct Engine_Entities *engineEntities;
 };
 
