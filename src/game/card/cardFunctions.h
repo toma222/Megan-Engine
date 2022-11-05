@@ -6,13 +6,15 @@
 #include "../../utils/macros.h"
 #include "../../utils/logging.h"
 
+Entity Alignment;
+
 Entity cards[6];
 int cardLength = 0;
 
-Entity Alignment;
-
+// Drag and drop
 int holding[6] = {0, 0, 0, 0, 0};
 int canHold = 0;
+struct Vector2 dragOffset;
 
 void UpdateCards(Entity window)
 {
@@ -21,12 +23,16 @@ void UpdateCards(Entity window)
         if (MouseInSpriteBox(cards[card], window) == 0 && (window->components.window->mouse & SDL_BUTTON_LMASK) != 0 && canHold == 0)
         {
             holding[card] = 1;
+
+            dragOffset.x = cards[card]->components.transform->position.x - window->components.window->mousePositionX;
+            dragOffset.y = cards[card]->components.transform->position.y - window->components.window->mousePositionY;
+
             canHold = 1;
         }
 
         if (holding[card] == 1)
         {
-            setPosition(cards[card], window->components.window->mousePositionX, window->components.window->mousePositionY);
+            setPosition(cards[card], window->components.window->mousePositionX + dragOffset.x, window->components.window->mousePositionY + dragOffset.y);
 
             if ((window->components.window->mouse & SDL_BUTTON_LMASK) == 0)
             {
