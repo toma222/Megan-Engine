@@ -15,6 +15,7 @@
 
 #include "../../utils/logging.h"
 #include "../../utils/time.h"
+#include "../../utils/math/MMath.h"
 
 #include <windows.h>
 #include <stdio.h>
@@ -32,6 +33,9 @@ void MakeWindow(Entity entity, int xSize, int ySize)
 
     entity->components.window->xSize = xSize;
     entity->components.window->ySize = ySize;
+
+    entity->components.window->sync.x = xSize / 192;
+    entity->components.window->sync.y = ySize / 108;
 
     strcpy(entity->components.window->title, "game");
 
@@ -73,6 +77,11 @@ void SyncWindow(long prevTime)
 int RenderWindow(Entity window)
 {
     long startTime = current_timestamp();
+    SDL_PumpEvents();
+    window->components.window->mouse = SDL_GetMouseState(&window->components.window->mousePositionX, &window->components.window->mousePositionY);
+
+    window->components.window->mousePositionX /= window->components.window->sync.x;
+    window->components.window->mousePositionY /= window->components.window->sync.y;
 
     SDL_Event e;
     while (SDL_PollEvent(&e) > 0)
@@ -90,8 +99,8 @@ int RenderWindow(Entity window)
     SDL_UpdateWindowSurface(window->components.window->window);
 
     /* This function helps keep the frame rate consistant */
-    SyncWindow(startTime);
 
+    SyncWindow(startTime);
     return 0;
 }
 

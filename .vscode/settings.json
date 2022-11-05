@@ -14,5 +14,6 @@
     "gamegenerics.h": "c",
     "sdl_timer.h": "c",
     "componentsgenarics.h": "c"
-  }
+  },
+  "C_Cpp.errorSquiggles": "Disabled"
 }

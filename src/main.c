@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
     logInfo(printf("Window created and ECS initialized in %lld MS", gTime() - b), 3);
 
     Start(container, window);
-    logInfo(printf("Engine initilized in in %lld MS", gTime() - over), 2);
+    logInfo(printf("Engine initialized in in %lld MS", gTime() - over), 2);
 
     int frameLogCount = 0;
     int epoch = 0;

@@ -2,6 +2,7 @@
 #pragma once
 
 #include "SDL2/SDL.h"
+#include "../utils/math/MMath.h"
 
 #include <windows.h>
 #include <stdio.h>
@@ -13,4 +14,10 @@ typedef struct
     char title[20];
     SDL_Window *window;
     SDL_Renderer *window_renderer;
+    struct Vector2 sync;
+
+    int mousePositionX;
+    int mousePositionY;
+
+    Uint32 mouse;
 } Comp_Window;

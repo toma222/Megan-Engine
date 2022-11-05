@@ -7,7 +7,7 @@
 #include "../utils/macros.h"
 #include "../utils/logging.h"
 
-// Entity sprite;
+#include "card/cardFunctions.h"
 
 void Start(ECSContainer container, Entity window)
 {
@@ -23,9 +23,17 @@ void Start(ECSContainer container, Entity window)
     // Test card
     char cardPath[200] = "C:/Users/Aidan/Desktop/progectStructureTester/assets/images/game/battle/cards/Kick.bmp";
     // Entity alignment = CreateAlignmentComponent()
-    CreateImageComponent(container, window, NewVector2(10, 63), NewVector2(25, 35), cardPath);
+    InitCards(container);
+
+    AddCard(container, cardPath);
+    AddCard(container, cardPath);
+    AddCard(container, cardPath);
+    AddCard(container, cardPath);
+    AddCard(container, cardPath);
+    AddCard(container, cardPath);
 }
 
 void Update(ECSContainer container, Entity window)
 {
+    UpdateCards(window);
 }

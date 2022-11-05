@@ -26,7 +26,7 @@ void RenderSprite(Entity window, Entity sprite)
 
     if (SDL_RenderCopy(window->components.window->window_renderer, sprite->components.image->texture, NULL, &sprite->components.image->texture_rect) != 0)
     {
-        //logError(printf("%s", SDL_GetError()));
+        // logError(printf("%s", SDL_GetError()));
     }
 }
 
@@ -78,6 +78,23 @@ void AddImageComponent(Entity e)
     memset(e->components.image, 0, sizeof(Comp_Image));
     e->components.CompImageIndex = 1;
     logTrace(printf("Image component allocated with address %p", e->components.image), 1);
+}
+
+int MouseInSpriteBox(Entity e, Entity window)
+{
+
+    // e->components.transform->position.x = x / e->components.image->xSync;
+    // e->components.transform->position.y = y / e->components.image->ySync;
+
+    int bLeftX = e->components.transform->position.x + (e->components.transform->scale.x * e->components.image->imageSizeX);
+    int bLeftY = e->components.transform->position.y + (e->components.transform->scale.y * e->components.image->imageSizeY);
+
+    // SDL_Log("Mouse cursor is at %f, %f", window->components.window->mousePosition.x, window->components.window->sync.y);
+
+    if (e->components.transform->position.x <= window->components.window->mousePositionX && window->components.window->mousePositionX <= bLeftX && e->components.transform->position.y <= window->components.window->mousePositionY && window->components.window->mousePositionY <= bLeftY)
+        return 0;
+    else
+        return -1;
 }
 
 Entity CreateImageComponent(ECSContainer container, Entity window, struct Vector2 position, struct Vector2 imageScale, char path[200])
