@@ -8,7 +8,10 @@
 #include "../../utils/math/MMath.h"
 #include "../../utils/macros.h"
 
+#include "SDL2/SDL_ttf.h"
+
 #include "submod/alignment.h"
+#include "submod/imageProccessing.h"
 
 void RenderSprite(Entity window, Entity sprite)
 {
@@ -41,6 +44,33 @@ void RenderTextureFromImage(Comp_Image *sprite, Comp_Window *window)
     else
     {
         sprite->texture = SDL_CreateTextureFromSurface(window->window_renderer, image);
+        logClean(printf("Cleaning %lu bytes from sprite texture", sizeof(image)), 0);
+        SDL_FreeSurface(image);
+
+        if (SDL_RenderCopy(window->window_renderer, sprite->texture, NULL, &sprite->texture_rect) < 0)
+        {
+            SDL_GetError();
+            logError(printf(" %s", SDL_GetError()));
+        }
+        else
+        {
+            logTrace(printf("Sprite Successfully Drawn"), 0);
+        }
+    }
+}
+
+void RenderTextureFromText(Comp_Image *sprite, Comp_Window *window, int fontSize, SDL_Color color, char text[200])
+{
+    /*
+    TTF_Font *Sans = TTF_OpenFont(sprite->path, 24);
+    if (Sans == NULL)
+    {
+        logWarning(printf("Could not find %s", sprite->path), 2);
+    }
+    else
+    {
+        SDL_Surface *image = TTF_RenderText_Solid(Sans, text, color);
+        sprite->texture = SDL_CreateTextureFromSurface(window->window_renderer, image);
         logClean(printf("Cleaning %lli bytes from sprite texture", sizeof(image)), 0);
         SDL_FreeSurface(image);
 
@@ -54,6 +84,7 @@ void RenderTextureFromImage(Comp_Image *sprite, Comp_Window *window)
             logTrace(printf("Sprite Successfully Drawn"), 0);
         }
     }
+    */
 }
 
 void MakeSprite(Entity window, Entity sprite)
@@ -69,9 +100,8 @@ void MakeSprite(Entity window, Entity sprite)
     /* I want to scale the sprites to a 192 by 108 pixel aspect so we calculate these Sync values */
     sprite->components.image->xSync = windowX / 192;
     sprite->components.image->ySync = windowY / 108;
-
-    RenderTextureFromImage(sprite->components.image, window->components.window);
 }
+
 void AddImageComponent(Entity e)
 {
     e->components.image = malloc(sizeof(Comp_Image));
@@ -97,6 +127,28 @@ int MouseInSpriteBox(Entity e, Entity window)
         return -1;
 }
 
+Entity CreateImageComponentText(ECSContainer container, Entity window, struct Vector2 position, struct Vector2 imageScale, int fontSize, SDL_Color color, char fontPath[200], char text[200])
+{
+    Entity e = CreateEntity(container);
+    AddImageComponent(e);
+    AddTransformComponent(e);
+
+    e->components.transform->position.x = position.x;
+    e->components.transform->position.y = position.y;
+
+    e->components.transform->scale.x = 1;
+    e->components.transform->scale.y = 1;
+
+    e->components.image->imageSizeX = imageScale.x;
+    e->components.image->imageSizeY = imageScale.y;
+
+    strcpy(e->components.image->path, fontPath);
+    MakeSprite(window, e);
+    RenderTextureFromText(e->components.image, window->components.window, fontSize, color, text);
+
+    return e;
+}
+
 Entity CreateImageComponent(ECSContainer container, Entity window, struct Vector2 position, struct Vector2 imageScale, char path[200])
 {
     Entity e = CreateEntity(container);
@@ -114,6 +166,7 @@ Entity CreateImageComponent(ECSContainer container, Entity window, struct Vector
 
     strcpy(e->components.image->path, path);
     MakeSprite(window, e);
+    RenderTextureFromImage(e->components.image, window->components.window);
 
     return e;
 }

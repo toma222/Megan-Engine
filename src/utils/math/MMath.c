@@ -9,6 +9,7 @@ struct Vector2 NewVector2(float x, float y)
 
 void PerpendicularLinePostulate(struct Vector2 a, struct Vector2 b, struct Vector2 p)
 {
+    /*
     float lSlope = (a.y - b.y) / (a.x - b.x);
     float lIntercept = a.y - (lSlope * a.x);
 
@@ -19,4 +20,5 @@ void PerpendicularLinePostulate(struct Vector2 a, struct Vector2 b, struct Vecto
     float y = x;
 
     return NewVector2(x, y);
+    */
 }

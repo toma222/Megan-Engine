@@ -7,33 +7,16 @@
 #include "../utils/macros.h"
 #include "../utils/logging.h"
 
-#include "card/cardFunctions.h"
+#include "dominoes/dominoes.h"
 
 void Start(ECSContainer container, Entity window)
 {
+    int d[2] = {0,0};
+    MakeDominoe(container, window, d);
 
-    // Background
-    char path[200] = "C:/Users/Aidan/Desktop/progectStructureTester/assets/images/game/battle/Untitled.bmp";
-    CreateImageComponent(container, window, NewVector2(0, 0), NewVector2(192, 108), path);
-
-    // Player Card
-    char playerCardPath[200] = "C:/Users/Aidan/Desktop/progectStructureTester/assets/images/game/PlayerCard.bmp";
-    CreateImageComponent(container, window, NewVector2(143, 1), NewVector2(40, 55), playerCardPath);
-
-    // Test card
-    char cardPath[200] = "C:/Users/Aidan/Desktop/progectStructureTester/assets/images/game/battle/cards/Kick.bmp";
-    // Entity alignment = CreateAlignmentComponent()
-    InitCards(container);
-
-    AddCard(container, cardPath);
-    AddCard(container, cardPath);
-    AddCard(container, cardPath);
-    AddCard(container, cardPath);
-    AddCard(container, cardPath);
-    AddCard(container, cardPath);
+    // Image will be rendered with the component update loop
 }
 
 void Update(ECSContainer container, Entity window)
 {
-    UpdateCards(window);
 }

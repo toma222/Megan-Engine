@@ -17,7 +17,6 @@
 #include "../../utils/time.h"
 #include "../../utils/math/MMath.h"
 
-#include <windows.h>
 #include <stdio.h>
 #include <sys/time.h>
 #include <stdbool.h>
@@ -27,9 +26,9 @@
 
 void MakeWindow(Entity entity, int xSize, int ySize)
 {
-    SDL_Init(SDL_INIT_EVERYTHING);
+    //SDL_Init(SDL_INIT_EVERYTHING);
 
-    TTF_Init();
+    //TTF_Init();
 
     entity->components.window->xSize = xSize;
     entity->components.window->ySize = ySize;
@@ -53,10 +52,10 @@ void MakeWindow(Entity entity, int xSize, int ySize)
     }
 
     /* Initialize Audio */
-    if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
-    {
-        logError(printf("SDL_Mixer not working"));
-    }
+    //if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 1024) == -1)
+    //{
+    //    logError(printf("SDL_Mixer not working"));
+    //}
 
     /* Sets up the renderer with the SDL_RENDERER_PRESENTVSYNC option because it runs faster with it (I dont know why)*/
     entity->components.window->window_renderer = SDL_CreateRenderer(entity->components.window->window, -1, SDL_RENDERER_ACCELERATED);

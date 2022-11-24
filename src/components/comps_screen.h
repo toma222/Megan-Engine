@@ -4,7 +4,6 @@
 #include "SDL2/SDL.h"
 #include "../utils/math/MMath.h"
 
-#include <windows.h>
 #include <stdio.h>
 
 typedef struct

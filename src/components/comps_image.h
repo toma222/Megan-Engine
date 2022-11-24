@@ -5,7 +5,6 @@
 #include "../ecs/ecs.h"
 #include "../utils/math/MMath.h"
 
-
 typedef struct
 {
     // computer location
@@ -13,6 +12,7 @@ typedef struct
 
     // SDL configs
     SDL_Texture *texture;
+    SDL_Surface *surface;
     SDL_Rect texture_rect;
 
     // sync to prefered size
@@ -25,5 +25,3 @@ typedef struct
     int layer;
 
 } Comp_Image;
-
-
