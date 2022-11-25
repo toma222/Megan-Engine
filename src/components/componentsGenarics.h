@@ -26,6 +26,9 @@ struct Components
 
     Comp_DeferedRender *deferedRenderer;
     int DeferedRendererIndex;
+
+    Comp_Physics *physics;
+    int CompPhysicsIndex;
 };
 
 /*

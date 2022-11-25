@@ -44,13 +44,20 @@ void UpdateECS(ECSContainer container, Entity window, Entity renderer)
     // loop through all the components
     for (size_t comp = 0; comp < container->entitiesPointer; comp++)
     {
+        /*
+        if (container->entities[comp]->components.CompPhysicsIndex == 1){
+            // Update the position
+
+        }
+        */
+
         if (container->entities[comp]->components.CompImageIndex == 1)
         {
             RenderSprite(window, container->entities[comp]);
             UpdateImageComponent(window, container->entities[comp]);
 
             if(container->entities[comp]->components.image->defered == 1){
-                RenderSprite(window, container->entities[comp]);
+                DeferedRenderSprite(container->entities[comp], renderer, window);
             }
         }
     }

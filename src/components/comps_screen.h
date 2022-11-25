@@ -18,5 +18,7 @@ typedef struct
     int mousePositionX;
     int mousePositionY;
 
+    int keys[322];
+
     Uint32 mouse;
 } Comp_Window;

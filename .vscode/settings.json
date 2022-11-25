@@ -16,7 +16,9 @@
     "componentsgenarics.h": "c",
     "rendering.h": "c",
     "mmath.h": "c",
-    "macros.h": "c"
+    "macros.h": "c",
+    "__locale": "c",
+    "ios": "c"
   },
   "C_Cpp.errorSquiggles": "Disabled"
 }

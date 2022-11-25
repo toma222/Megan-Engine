@@ -16,3 +16,8 @@ typedef struct
     struct Vector2 padding;
     struct Vector2 rootPosition;
 } Comp_Alignment;
+
+typedef struct
+{
+    int gravity;
+} Comp_Physics;

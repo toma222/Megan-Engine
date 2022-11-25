@@ -58,7 +58,7 @@ void MakeWindow(Entity entity, int xSize, int ySize)
     //}
 
     /* Sets up the renderer with the SDL_RENDERER_PRESENTVSYNC option because it runs faster with it (I dont know why)*/
-    entity->components.window->window_renderer = SDL_CreateRenderer(entity->components.window->window, -1, SDL_RENDERER_ACCELERATED);
+    entity->components.window->window_renderer = SDL_CreateRenderer(entity->components.window->window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 }
 
 void SyncWindow(long prevTime)
@@ -90,7 +90,14 @@ int RenderWindow(Entity window)
         case SDL_QUIT:
             return -1;
             break;
+        case SDL_KEYDOWN:
+            window->components.window->keys[e.key.keysym.sym] = 1;
+            break;
+        case SDL_KEYUP:
+            window->components.window->keys[e.key.keysym.sym] = 0;
+            break;
         }
+        
     }
 
     /* Presents all the changes made to the window and renders them */
@@ -117,6 +124,12 @@ Entity CreateWindowComponent(ECSContainer container, int sizeX, int sizeY)
     Entity e = CreateEntity(container);
     AddWindowComponent(e);
     MakeWindow(e, sizeX, sizeY);
+ 
+    for (size_t i = 0; i < 322; i++)
+    {
+        e->components.window->keys[i] = 0;
+    }
+
     logTrace(printf("Window component configured"), 0);
     return e;
 }

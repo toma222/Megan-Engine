@@ -4,6 +4,8 @@
 #include "../genericsHeader.h"
 #include "../../components/componentsGenarics.h"
 
+#include "submod/physics.h"
+
 void movePosition(Entity e, float x, float y)
 {
     e->components.transform->position.x += x;

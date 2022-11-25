@@ -26,6 +26,7 @@ void UpdateWindowComponent(Entity entity);
 void MakeSprite(Entity Window, Entity Sprite);
 void RenderSprite();
 int MouseInSpriteBox(Entity e, Entity window);
+int PointInSpriteBox(Entity sprite1, Entity sprite2);
 void AddImageComponent(Entity e);
 Entity CreateImageComponent(ECSContainer container, Entity window, struct Vector2 position, struct Vector2 imageScale, char path[200]);
 void UpdateImageComponent(Entity window, Entity entity);
@@ -43,7 +44,7 @@ Entity CreateDeferedRenderComponent(ECSContainer container, Entity window);
 void UpdateDeferedRenderer(ECSContainer container, Entity window, Entity renderer);
 void AddLight(Entity renderer, struct Vector2 position, int radiance, float strength);
 void AddSprite(Entity Sprite, Entity renderer);
-void RenderImageDefered(Entity renderer, Comp_Image *sprite);
+void RenderImageDefered(Entity renderer, Entity sprite);
 void DeferedRenderSprite(Entity sprites, Entity render, Entity window);
 
 

@@ -39,25 +39,27 @@ void CalculateLights(Entity renderer){
     }
 }
 
-void RenderImageDefered(Entity renderer, Comp_Image *sprite)
+void RenderImageDefered(Entity renderer, Entity sprite)
 {
-    int xSize = sprite->surface->w;
-    int ySize = sprite->surface->h;
+    int xSize = sprite->components.image->surface->w;
+    int ySize = sprite->components.image->surface->h;
 
     for (size_t x = 0; x < xSize; x++)
     {
         for (size_t y = 0; y < ySize; y++)
         {
             // take max lol
-            double lightStrength = renderer->components.deferedRenderer->lightBuffer[x][y];
+            double lightStrength = renderer->components.deferedRenderer->lightBuffer
+                [(int)(fminf(x + sprite->components.transform->position.x,192))]
+                [(int)(fminf(y + sprite->components.transform->position.y,108))];
             // light[pixelIndex] = lightStrength;
             //PutPixel(sprite->surface, width, height, SDL_MapRGB(sprite->surface->format, lightStrength * 255, lightStrength * 255, lightStrength * 255));
             
             // RGB colors aquired!
-            Uint8 *const target_pixel = ((Uint8 *)sprite->surface->pixels + y * sprite->surface->pitch + x * sprite->surface->format->BytesPerPixel);
+            Uint8 *const target_pixel = ((Uint8 *)sprite->components.image->surface->pixels + y * sprite->components.image->surface->pitch + x * sprite->components.image->surface->format->BytesPerPixel);
 
             PutPixel(
-                sprite->renderSurface, y, x,
+                sprite->components.image->renderSurface, y, x,
                 fmin(target_pixel[0] * lightStrength, 255), 
                 fmin(target_pixel[1] * lightStrength, 255), 
                 fmin(target_pixel[2] * lightStrength, 255)
@@ -83,7 +85,7 @@ void RenderTextureFromSurface(Comp_Image *sprite, Comp_Window *window)
 }
 
 void DeferedRenderSprite(Entity sprites, Entity render, Entity window){
-    RenderImageDefered(render, sprites->components.image);
+    RenderImageDefered(render, sprites);
     RenderTextureFromSurface(sprites->components.image, window->components.window);
 }
 
@@ -125,7 +127,7 @@ Entity CreateImageComponentRender(ECSContainer container, Entity window, struct 
     MakeSprite(window, e);
     RenderSurfaceFromImage(e->components.image, window->components.window);
     CalculateLights(renderer);
-    RenderImageDefered(renderer ,e->components.image);
+    RenderImageDefered(renderer ,e);
     RenderTextureFromSurface(e->components.image, window->components.window);
 
     return e;

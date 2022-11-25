@@ -37,8 +37,7 @@ void RenderTextureFromImage(Comp_Image *sprite, Comp_Window *window)
 {
     /* Loads the image in and makes it a texture */
     SDL_Surface *image = SDL_LoadBMP(sprite->path);
-    memcpy(sprite->surface, image, sizeof(SDL_Surface));
-    memcpy(sprite->renderSurface, image, sizeof(SDL_Surface));
+    SDL_Surface *renderImage = SDL_LoadBMP(sprite->path);
 
     if (image == NULL)
     {
@@ -127,6 +126,25 @@ int MouseInSpriteBox(Entity e, Entity window)
         return 0;
     else
         return -1;
+}
+
+int PointInSpriteBox(Entity sprite1, Entity sprite2)
+{
+    float l1[2] = {sprite1->components.transform->position.x, sprite1->components.transform->position.y};
+    float l2[2] = {sprite2->components.transform->position.x, sprite2->components.transform->position.y};
+
+    float r1[2] = {sprite1->components.transform->position.x + sprite1->components.image->imageSizeX, sprite1->components.transform->position.y + sprite1->components.image->imageSizeY};
+    float r2[2] = {sprite2->components.transform->position.x + sprite2->components.image->imageSizeX, sprite2->components.transform->position.y + sprite2->components.image->imageSizeY};
+
+    if((l1[0] > r2[0]) ||
+       (r1[0] < l2[0]) || 
+       (l1[1] > r2[1]) ||
+       (r1[1] < l2[1]))
+    {
+        return 0;
+    }
+
+    return 1;
 }
 
 Entity CreateImageComponentText(ECSContainer container, Entity window, struct Vector2 position, struct Vector2 imageScale, int fontSize, SDL_Color color, char fontPath[200], char text[200])
