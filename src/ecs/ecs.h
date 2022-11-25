@@ -27,6 +27,7 @@ typedef struct Struct_Entity *Entity;
 struct Engine_Entities
 {
     int windowIndex;
+    int deferedIndex;
 };
 
 struct Engine_Entities;
@@ -52,4 +53,4 @@ void StartECS(ECSContainer container);
 void DestroyEntity(ECSContainer container, unsigned short int id);
 
 // Updates all the components
-void UpdateECS(ECSContainer container, Entity window);
+void UpdateECS(ECSContainer container, Entity window, Entity renderer);

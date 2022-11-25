@@ -7,16 +7,22 @@
 #include "../utils/macros.h"
 #include "../utils/logging.h"
 
-#include "dominoes/dominoes.h"
+Entity sprite;
 
-void Start(ECSContainer container, Entity window)
+void Start(ECSContainer container, Entity window, Entity renderer)
 {
-    int d[2] = {0,0};
-    MakeDominoe(container, window, d);
+    char path[200] = "/Users/benjaminwilhite/Desktop/ExtraCCRedy/assets/images/test/192x108.bmp";
+    // Entity e = CreateImageComponentRender(container, window, NewVector2(0, 0), NewVector2(32,32), path);
+    
 
-    // Image will be rendered with the component update loop
+    AddLight(renderer, NewVector2(10,10), 1, 0.95);
+    AddLight(renderer, NewVector2(30,30), 1, 0.8);
+
+    
+    sprite = CreateImageComponentRender(container,window, NewVector2(0,0), NewVector2(32, 32), path, renderer);
 }
 
-void Update(ECSContainer container, Entity window)
+void Update(ECSContainer container, Entity window, Entity renderer)
 {
+    
 }

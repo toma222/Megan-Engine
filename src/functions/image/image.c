@@ -11,7 +11,7 @@
 #include "SDL2/SDL_ttf.h"
 
 #include "submod/alignment.h"
-#include "submod/imageProccessing.h"
+#include "submod/rendering.h"
 
 void RenderSprite(Entity window, Entity sprite)
 {
@@ -37,6 +37,9 @@ void RenderTextureFromImage(Comp_Image *sprite, Comp_Window *window)
 {
     /* Loads the image in and makes it a texture */
     SDL_Surface *image = SDL_LoadBMP(sprite->path);
+    memcpy(sprite->surface, image, sizeof(SDL_Surface));
+    memcpy(sprite->renderSurface, image, sizeof(SDL_Surface));
+
     if (image == NULL)
     {
         logWarning(printf("Could not find %s", sprite->path), 2);
@@ -45,7 +48,6 @@ void RenderTextureFromImage(Comp_Image *sprite, Comp_Window *window)
     {
         sprite->texture = SDL_CreateTextureFromSurface(window->window_renderer, image);
         logClean(printf("Cleaning %lu bytes from sprite texture", sizeof(image)), 0);
-        SDL_FreeSurface(image);
 
         if (SDL_RenderCopy(window->window_renderer, sprite->texture, NULL, &sprite->texture_rect) < 0)
         {

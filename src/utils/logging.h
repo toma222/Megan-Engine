@@ -52,7 +52,7 @@
 */
 // TYPE time path:line message
 
-#define seeLevel 2
+#define seeLevel 0
 
 #define logInfo(message, level)                                                           \
     if (seeLevel <= level)                                                                \

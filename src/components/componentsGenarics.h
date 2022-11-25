@@ -23,6 +23,9 @@ struct Components
 
     Comp_Alignment *alignment;
     int CompAlignmentIndex;
+
+    Comp_DeferedRender *deferedRenderer;
+    int DeferedRendererIndex;
 };
 
 /*

@@ -37,7 +37,9 @@ int main(int argc, char *argv[])
     logTrace(printf("Window for engine created with pointer at %p", window), 2);
     logInfo(printf("Window created and ECS initialized in %lld MS", gTime() - b), 3);
 
-    Start(container, window);
+    Entity renderer = CreateDeferedRenderComponent(container, window);
+
+    Start(container, window, renderer);
     logInfo(printf("Engine initialized in in %lld MS", gTime() - over), 2);
 
     int frameLogCount = 0;
@@ -49,9 +51,9 @@ int main(int argc, char *argv[])
     {
         // Clear SDL Render
         SDL_RenderClear(window->components.window->window_renderer);
-        UpdateECS(container, window);
+        UpdateECS(container, window, renderer);
 
-        Update(container, window);
+        Update(container, window, renderer);
         frameLogCount++;
         if (frameLogCount == 60)
         {

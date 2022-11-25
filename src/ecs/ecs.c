@@ -39,7 +39,7 @@ void DestroyEntity(ECSContainer container, unsigned short int id)
     container->entitiesPointer = id;
 }
 
-void UpdateECS(ECSContainer container, Entity window)
+void UpdateECS(ECSContainer container, Entity window, Entity renderer)
 {
     // loop through all the components
     for (size_t comp = 0; comp < container->entitiesPointer; comp++)
@@ -48,6 +48,10 @@ void UpdateECS(ECSContainer container, Entity window)
         {
             RenderSprite(window, container->entities[comp]);
             UpdateImageComponent(window, container->entities[comp]);
+
+            if(container->entities[comp]->components.image->defered == 1){
+                RenderSprite(window, container->entities[comp]);
+            }
         }
     }
 

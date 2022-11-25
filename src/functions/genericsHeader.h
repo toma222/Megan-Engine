@@ -33,10 +33,19 @@ Entity CreateImageComponentText(ECSContainer container, Entity window, struct Ve
 
 // Image Processing Functions
 void RenderSurfaceFromImage(Comp_Image *sprite, Comp_Window *window);
-Entity CreateImageComponentProcessing(ECSContainer container, Entity window, struct Vector2 position, struct Vector2 imageScale, char path[200]);
-Entity CreateImageComponentProcessingBlank(ECSContainer container, Entity window, struct Vector2 position, struct Vector2 imageScale);
+Entity CreateImageComponentRender(ECSContainer container, Entity window, struct Vector2 position, struct Vector2 imageScale, char path[200], Entity renderer);
+// Entity CreateImageComponentProcessingBlank(ECSContainer container, Entity window, struct Vector2 position, struct Vector2 imageScale);
 void RenderTextureFromSurface(Comp_Image *sprite, Comp_Window *window);
-void PutPixel(SDL_Surface *image, int x, int y, Uint32 color);
+void PutPixel(SDL_Surface *image, int x, int y, int b, int g, int r);
+
+// Defered Renderer Functions
+Entity CreateDeferedRenderComponent(ECSContainer container, Entity window);
+void UpdateDeferedRenderer(ECSContainer container, Entity window, Entity renderer);
+void AddLight(Entity renderer, struct Vector2 position, int radiance, float strength);
+void AddSprite(Entity Sprite, Entity renderer);
+void RenderImageDefered(Entity renderer, Comp_Image *sprite);
+void DeferedRenderSprite(Entity sprites, Entity render, Entity window);
+
 
 // Alignment Functions
 void addAlignmentComponent(Entity e);
