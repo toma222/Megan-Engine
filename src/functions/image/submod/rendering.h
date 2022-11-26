@@ -121,6 +121,9 @@ Entity CreateImageComponentRender(ECSContainer container, Entity window, struct 
     e->components.image->imageSizeX = imageScale.x;
     e->components.image->imageSizeY = imageScale.y;
 
+    e->components.transform->imageScale.x = imageScale.x;
+    e->components.transform->imageScale.y = imageScale.y;
+
     e->components.image->defered = 1;
 
     strcpy(e->components.image->path, path);

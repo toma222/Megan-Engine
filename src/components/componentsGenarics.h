@@ -29,6 +29,9 @@ struct Components
 
     Comp_Physics *physics;
     int CompPhysicsIndex;
+
+    Comp_Movement *movement;
+    int CompMovementIndex;
 };
 
 /*

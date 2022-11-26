@@ -162,6 +162,9 @@ Entity CreateImageComponentText(ECSContainer container, Entity window, struct Ve
     e->components.image->imageSizeX = imageScale.x;
     e->components.image->imageSizeY = imageScale.y;
 
+    e->components.transform->imageScale.x = imageScale.x;
+    e->components.transform->imageScale.y = imageScale.y;
+
     strcpy(e->components.image->path, fontPath);
     MakeSprite(window, e);
     RenderTextureFromText(e->components.image, window->components.window, fontSize, color, text);
@@ -180,6 +183,9 @@ Entity CreateImageComponent(ECSContainer container, Entity window, struct Vector
 
     e->components.transform->scale.x = 1;
     e->components.transform->scale.y = 1;
+
+    e->components.transform->imageScale.x = imageScale.x;
+    e->components.transform->imageScale.y = imageScale.y;
 
     e->components.image->imageSizeX = imageScale.x;
     e->components.image->imageSizeY = imageScale.y;

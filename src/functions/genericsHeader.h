@@ -54,4 +54,8 @@ Entity CreateAlignmentComponent(ECSContainer container, struct Vector2 cellSize,
 void UpdateAlignmentComponent(Entity alignment);
 void CalculateAlignmentPosition(Entity alignment);
 void AddImageToAlignment(Entity alignment, Entity sprite);
-// MMath functions
+
+// Movement
+void UpdateMovementComponent(Entity entity, Entity window);
+void AddCollisionObject(Entity movement, Entity newCol);
+void AddMovementComponent(Entity e);
