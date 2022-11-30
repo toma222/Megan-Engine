@@ -5,6 +5,111 @@
 
 #include "../../../utils/math/MMath.h"
 #include "../../../utils/macros.h"
+/*
+LOST CENTURY
+https://lospec.com/palette-list/lost-century
+
+int palletLength = 16;
+int const colors[palletLength] = {
+0xd1b187,
+0xc77b58,
+0xae5d40,
+0x79444a,
+0x4b3d44,
+0xba9158,
+0x927441,
+0x4d4539,
+0x77743b,
+0xb3a555,
+0xd2c9a5,
+0x8caba1,
+0x4b726e,
+0x574852,
+0x847875,
+0xab9b8e
+};
+*/
+
+/*
+
+Demichrome
+
+int palletLength = 4;
+int const colors[4] = {
+0x211e20,
+0x555568,
+0xa0a08b,
+0xe9efec
+};
+*/
+
+int palletLength = 64;
+int const colors[64] = {
+0x2e222f,
+0x3e3546,
+0x625565,
+0x966c6c,
+0xab947a,
+0x694f62,
+0x7f708a,
+0x9babb2,
+0xc7dcd0,
+0xffffff,
+0x6e2727,
+0xb33831,
+0xea4f36,
+0xf57d4a,
+0xae2334,
+0xe83b3b,
+0xfb6b1d,
+0xf79617,
+0xf9c22b,
+0x7a3045,
+0x9e4539,
+0xcd683d,
+0xe6904e,
+0xfbb954,
+0x4c3e24,
+0x676633,
+0xa2a947,
+0xd5e04b,
+0xfbff86,
+0x165a4c,
+0x239063,
+0x1ebc73,
+0x91db69,
+0xcddf6c,
+0x313638,
+0x374e4a,
+0x547e64,
+0x92a984,
+0xb2ba90,
+0x0b5e65,
+0x0b8a8f,
+0x0eaf9b,
+0x30e1b9,
+0x8ff8e2,
+0x323353,
+0x484a77,
+0x4d65b4,
+0x4d9be6,
+0x8fd3ff,
+0x45293f,
+0x6b3e75,
+0x905ea9,
+0xa884f3,
+0xeaaded,
+0x753c54,
+0xa24b6f,
+0xcf657f,
+0xed8099,
+0x831c5d,
+0xc32454,
+0xf04f78,
+0xf68181,
+0xfca790,
+0xfdcbb0,
+};
 
 void PutPixel(SDL_Surface *image, int x, int y, int b, int g, int r)
 {
@@ -58,11 +163,33 @@ void RenderImageDefered(Entity renderer, Entity sprite)
             // RGB colors aquired!
             Uint8 *const target_pixel = ((Uint8 *)sprite->components.image->surface->pixels + y * sprite->components.image->surface->pitch + x * sprite->components.image->surface->format->BytesPerPixel);
 
+            int targetColor[3] = {target_pixel[0] * lightStrength, target_pixel[1] * lightStrength, target_pixel[2] * lightStrength};
+
+
+            int closest = 257;
+            int finalColor[3] = {0,0,0};
+
+            for (size_t c = 0; c < palletLength; c++)
+            {
+                double distance = sqrt(
+                    (((colors[c] >> 16) & 0xFF) - targetColor[0]) * (((colors[c] >> 16) & 0xFF) - targetColor[0]) +
+                    (((colors[c] >> 8) & 0xFF) - targetColor[1]) *  (((colors[c] >> 8) & 0xFF) - targetColor[1]) + 
+                    (((colors[c]) & 0xFF) - targetColor[2]) *       (((colors[c]) & 0xFF) - targetColor[2])
+                );
+
+                if(closest > distance){
+                    closest = distance;
+                    finalColor[2] = ((colors[c] >> 16) & 0xFF);
+                    finalColor[1] = ((colors[c] >> 8) & 0xFF);
+                    finalColor[0] = (colors[c] & 0xFF);
+                }
+            }
+            
             PutPixel(
                 sprite->components.image->renderSurface, y, x,
-                fmin(target_pixel[0] * lightStrength, 255), 
-                fmin(target_pixel[1] * lightStrength, 255), 
-                fmin(target_pixel[2] * lightStrength, 255)
+                fmin(finalColor[2], 255), 
+                fmin(finalColor[1], 255), 
+                fmin(finalColor[0], 255)
             );
         }
     }
