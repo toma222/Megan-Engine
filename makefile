@@ -1,14 +1,14 @@
 
 COMPILER=gcc
-TARGET = mac
-SYSTEM = mac
+TARGET = x64
+SYSTEM = windows
 BIN_PATH = dist/$(TARGET)/main
 
-MAINFILE = src/main.c
+MAINFILE = engine/main.c
 INCLUDE_PATH = -Iinclude/$(SYSTEM)
 LIBRARY_FLAGS = -Llib/$(TARGET) -lSDL2main -lSDL2 -lSDL2_image
 
-C_FILES = src/ecs/ecs.c src/functions/transform/transform.c src/functions/window/window.c src/game/game.c src/functions/image/image.c src/utils/math/MMath.c
+C_FILES = engine/data/ecs.c engine/func/transform/transform.c engine/func/window/window.c game/game.c engine/func/image/image.c engine/utils/math/MMath.c
 
 make:
 	$(info [MAKE][makefile] compiling with       => ${COMPILER})

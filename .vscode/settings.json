@@ -18,7 +18,8 @@
     "mmath.h": "c",
     "macros.h": "c",
     "__locale": "c",
-    "ios": "c"
+    "ios": "c",
+    "settings.h": "c"
   },
   "C_Cpp.errorSquiggles": "Disabled"
 }
