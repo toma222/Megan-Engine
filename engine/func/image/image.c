@@ -10,8 +10,8 @@
 
 #include "SDL2/SDL_ttf.h"
 
-#include "submod/alignment.h"
-#include "submod/rendering.h"
+#include "alignment.h"
+#include "rendering.h"
 
 void RenderSprite(Entity window, Entity sprite)
 {

@@ -1,10 +1,10 @@
 
-#include "../../../data/ecs.h"
-#include "../../../utils/logging.h"
-#include "../../genericsHeader.h"
+#include "../../data/ecs.h"
+#include "../../utils/logging.h"
+#include "../genericsHeader.h"
 
-#include "../../../utils/math/MMath.h"
-#include "../../../../game/settings.h"
+#include "../../utils/math/MMath.h"
+#include "../../../game/settings.h"
 
 void AddAlignmentComponent(Entity e)
 {

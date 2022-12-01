@@ -1,10 +1,10 @@
 
-#include "../../../data/ecs.h"
-#include "../../../utils/logging.h"
-#include "../../genericsHeader.h"
+#include "../../data/ecs.h"
+#include "../../utils/logging.h"
+#include "../genericsHeader.h"
 
-#include "../../../utils/math/MMath.h"
-#include "../../../../game/settings.h"
+#include "../../utils/math/MMath.h"
+#include "../../../game/settings.h"
 
 #include <math.h>
 /*
@@ -32,19 +32,35 @@ int const colors[palletLength] = {
 };
 */
 
+// Demichrome957128
+
+int palletLength = 24;
+int const colors[24] = {
+    0x000000,
+    0x6f6776,
+    0x9a9a97,
+    0xc5ccb8,
+    0x8b5580,
+    0xc38890,
+    0xa593a5,
+    0x666092,
+    0x9a4f50,
+    0xc28d75,
+    0x7ca1c0,
+    0x416aa3,
+    0x8d6268,
+    0xbe955c,
+    0x68aca9,
+    0x387080,
+    0x6e6962,
+    0x93a167,
+    0x6eaa78,
+    0x557064,
+    0x9d9f7f,
+    0x7e9e99,
+    0x5d6872,
+    0x433455};
 /*
-
-Demichrome
-
-int palletLength = 4;
-int const colors[4] = {
-0x211e20,
-0x555568,
-0xa0a08b,
-0xe9efec
-};
-*/
-
 int palletLength = 64;
 int const colors[64] = {
     0x2e222f,
@@ -112,6 +128,7 @@ int const colors[64] = {
     0xfca790,
     0xfdcbb0,
 };
+*/
 
 void PutPixel(SDL_Surface *image, int x, int y, int b, int g, int r)
 {

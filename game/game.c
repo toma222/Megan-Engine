@@ -32,8 +32,9 @@ void Start(ECSContainer container, Entity window, Entity renderer)
     AddMovementComponent(player);
     AddCollisionObject(player, ground);
     */
+
     char background[200] = "C:/Users/Aidan/Documents/OtherUsslessProjects'/Megan-Engine/assets/images/test/building.bmp";
-    AddLight(renderer, NewVector2(95, 10), 5, 0.97);
+    AddLight(renderer, NewVector2(95, 10), 1, 1);
     CreateImageComponentRender(container, window, NewVector2(0, 0), NewVector2(192, 108), background, renderer);
 }
 
