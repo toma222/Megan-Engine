@@ -49,7 +49,7 @@ namespace pn
 
 // Game logging macros
 // only for use in the game directory
-#define GM_CORE_TRACE(MESSAGE) Puffin::GameLogger->LogTrace(MESSAGE, __FILE__)
-#define GM_CORE_CLEAN(MESSAGE) Puffin::GameLogger->LogClean(MESSAGE, __FILE__)
-#define GM_CORE_FATAL(MESSAGE) Puffin::GameLogger->LogFatal(MESSAGE, __FILE__)
-#define GM_CORE_INFO(MESSAGE) Puffin::GameLogger->LogInfo(MESSAGE, __FILE__)
+#define GM_CORE_TRACE(MESSAGE) puffin::GameLogger->LogTrace(MESSAGE, __FILE__)
+#define GM_CORE_CLEAN(MESSAGE) puffin::GameLogger->LogClean(MESSAGE, __FILE__)
+#define GM_CORE_FATAL(MESSAGE) puffin::GameLogger->LogFatal(MESSAGE, __FILE__)
+#define GM_CORE_INFO(MESSAGE) puffin::GameLogger->LogInfo(MESSAGE, __FILE__)

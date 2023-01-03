@@ -3,11 +3,14 @@
 #include "Logging.h"
 #include "Window.h"
 
+#include "imgui.h"
+#include "imgui_impl_sdl.h"
+#include "imgui_impl_sdlrenderer.h"
 #include "SDL2/SDL.h"
 
 namespace pn
 {
-    void Window::InitWindow()
+    SDL_Renderer *Window::InitWindow()
     {
         PN_CORE_TRACE("Creating the window");
         SDL_DisplayMode DM;
@@ -30,6 +33,10 @@ namespace pn
         {
             PN_CORE_FATAL("SDL window not created");
         }
+
+        m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+
+        return m_renderer;
     }
 
     bool Window::UpdateWindow()
@@ -37,9 +44,15 @@ namespace pn
 
         SDL_Event e;
 
+        SDL_RenderPresent(m_renderer);
+
         while (SDL_PollEvent(&e))
         {
+            ImGui_ImplSDL2_ProcessEvent(&e);
+
             if (e.type == SDL_QUIT)
+                return false;
+            if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE)
                 return false;
         }
 
@@ -48,7 +61,7 @@ namespace pn
 
     void Window::ClearWindow()
     {
-        SDL_UpdateWindowSurface(m_window);
+        SDL_RenderClear(m_renderer);
     }
 
     Window::~Window()
