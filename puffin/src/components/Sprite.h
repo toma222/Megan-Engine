@@ -3,7 +3,7 @@
 
 #include "core/Core.h"
 #include "math/vector.h"
-#include "core/Window.h"
+#include "graphics/Window.h"
 #include <string>
 
 #include "Transform.h"

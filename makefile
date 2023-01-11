@@ -8,7 +8,7 @@ IMGUI_DIR = include\windows\imgui
 INCLUDE_PATH = -Iinclude/$(SYSTEM) -Ipuffin/src -I$(IMGUI_DIR) -I$(IMGUI_DIR)/backends -Iinclude/windows/SDL2
 LIBRARY_FLAGS = -Llib/$(TARGET) -lSDL2main -lSDL2 -lSDL2_image
 
-ENGINEOBJ = obj/Application.o obj/Window.o obj/Context.o obj/Logging.o obj/Graphics.o obj/Sprite.o obj/Container.o obj/Transform.o obj/Texture.o obj/Surface.o obj/Viewport.o obj/DefferedRenderer.o
+ENGINEOBJ = obj/Application.o obj/Window.o obj/Context.o obj/Logging.o obj/Graphics.o obj/Sprite.o obj/Container.o obj/Transform.o obj/Texture.o obj/Surface.o obj/AppSurface.o
 ANTARTICAOBJ = obj/Game.o
 
 IMGUIOBJ = obj/imgui.o obj/imgui_widgets.o obj/imgui_tables.o obj/imgui_draw.o obj/imgui_demo.o obj/imgui_impl_sdlrenderer.o obj/imgui_impl_sdl.o
@@ -37,10 +37,6 @@ obj/%.o : puffin/src/graphics/%.cpp puffin/src/graphics/%.h
 	$(COMPILER) -Wall -O2 -c -o $@ $< $(INCLUDE_PATH) $(LIBRARY_FLAGS)
 
 obj/%.o : puffin/src/components/%.cpp puffin/src/components/%.h
-	@echo ------ COMPILING PUFFIN FILE $< -------
-	$(COMPILER) -Wall -O2 -c -o $@ $< $(INCLUDE_PATH) $(LIBRARY_FLAGS)
-
-obj/%.o : puffin/src/viewport/%.cpp puffin/src/viewport/%.h
 	@echo ------ COMPILING PUFFIN FILE $< -------
 	$(COMPILER) -Wall -O2 -c -o $@ $< $(INCLUDE_PATH) $(LIBRARY_FLAGS)
 

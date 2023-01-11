@@ -1,4 +1,0 @@
-
-This quickly turned into SDL with classes instead of a ton of structs
-
-I hope to make this a sepprate repository so that people don't have to deal with SDL being awesome

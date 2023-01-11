@@ -1,23 +1,41 @@
 
 #pragma once
 
-#include "core/Core.h"
-#include "math/vector.h"
 #include "SDL2/SDL.h"
-#include "components/Sprite.h"
+
 #include <string>
+#include <memory>
 
-namespace pn
+namespace puffin
 {
-    namespace graphics
+
+    class Surface
     {
-        SDL_Surface *CreateSurfaceFromImage(std::string path);
+    private:
+        SDL_Surface *m_surface;
+        SDL_Rect *m_surfaceRect;
 
-        void PutPixelSurface(SDL_Surface *surf, int x, int y, SDL_Color rgb);
-        void PutPixelSurface(SDL_Surface *surf, int x, int y, Uint32 rgb);
+    public:
+        // File path to the image to load as a Surface
+        // Surface(std::string path);
+        Surface(int width, int height);
+        Surface(std::string path, int width, int height);
+        Surface(SDL_Surface *surface) { m_surface = surface; };
 
-        Uint32 *GetPixel(SDL_Surface *texture, int x, int y);
-        SDL_Color GetPixelColor(SDL_Surface *texture, int x, int y);
-    } // namespace graphics
+        ~Surface();
+
+        SDL_Surface *get() { return m_surface; };
+        SDL_Rect *GetDimensions() { return m_surfaceRect; };
+
+    public:
+        void PutPixel(int x, int y, int r, int g, int b);
+        void PutPixel(int x, int y, Uint32 color);
+
+        // Does a scaled blit so that you can change the size and such
+        void BlitSurface(Surface *from);
+
+        void ConvertSurface(Surface *windowSurface);
+    };
+    // namespace graphics
 
 } // namespace pn

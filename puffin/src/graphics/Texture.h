@@ -1,18 +1,35 @@
 
 #pragma once
 
-#include "core/Core.h"
-#include "math/vector.h"
+#include <memory>
+#include <string>
+
+#include "Renderer.h"
+#include "Surface.h"
+
 #include "SDL2/SDL.h"
-#include "components/Sprite.h"
 
-namespace pn
+namespace puffin
 {
-    namespace graphics
+
+    // Sorry have to forward declare
+    class Renderer;
+
+    class Texture
     {
-        SDL_Texture *CreateTextureFromSurface(SDL_Surface *surf);
+    private:
+        SDL_Texture *m_texture;
 
-        void PutPixel(SDL_Texture *texture);
+    public:
+        // Make texture from a surface
+        Texture(Surface surface);
+        Texture(Renderer *render, std::string imagePath);
 
-    }
+        ~Texture();
+
+        SDL_Texture *get() { return m_texture; };
+
+        void LoadSurface(Surface surface);
+    };
+
 } // namespace pn
